@@ -79,9 +79,11 @@ posts.forEach((postSpecs, index) =>{
         }
         postM.appendChild(postMIc);
 
+        const newDate = postSpecs.created.split("-").reverse().join("-");
+
         const postMD = document.createElement("div");
         postMD.classList = "post-meta__data"
-        postMD.innerHTML = `<div class="post-meta__author">${postSpecs.author.name}</div><div class="post-meta__time">${postSpecs.created}</div>`
+        postMD.innerHTML = `<div class="post-meta__author">${postSpecs.author.name}</div><div class="post-meta__time">${newDate}</div>`
         postM.appendChild(postMD)
 
         postH.appendChild(postM);
