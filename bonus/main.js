@@ -114,10 +114,17 @@ posts.forEach((postSpecs, index) =>{
         likeButton.classList = "like-button js-like-button";
         likeButton.addEventListener("click", 
             function(){
-                likeButton.classList.add("like-button--liked");
-                postSpecs.likes++
+                if(!this.classList.contains("like-button--liked")){
+                    postSpecs.likes++;
+                    likedPosts.push(postSpecs.id);
+                }
+                else{
+                    postSpecs.likes--;
+                    const toRemove = likedPosts.indexOf(postSpecs.id)
+                    likedPosts.splice(toRemove, 1);
+                }
                 likesContainer[index].innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${postSpecs.likes}</b> persone`
-                likedPosts.push(postSpecs.id);
+                this.classList.toggle("like-button--liked");
                 console.log(likedPosts);
             }
         );
