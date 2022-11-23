@@ -70,7 +70,13 @@ posts.forEach((postSpecs, index) =>{
 
         const postMIc = document.createElement("div");
         postMIc.classList = "post-meta__icon";
-        postMIc.innerHTML = `<img class="profile-pic" src=${postSpecs.author.image} alt=${postSpecs.author.name}>`;
+        if(postSpecs.author.image != null){
+            postMIc.innerHTML = `<img class="profile-pic" src=${postSpecs.author.image} alt=${postSpecs.author.name}>`;
+        }
+        else{
+            const firstLetters = postSpecs.author.name.split(' ').map(word => word[0]).join('');
+            postMIc.innerHTML = `<div class="profile-pic-default"><span>${firstLetters[0]}${firstLetters[1]}</span></div>`
+        }
         postM.appendChild(postMIc);
 
         const postMD = document.createElement("div");
